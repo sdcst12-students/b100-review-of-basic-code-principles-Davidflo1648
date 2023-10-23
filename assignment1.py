@@ -23,11 +23,11 @@ if userInput == 'years':
   I = P * R * T
   print(f"The amount of simple interest is {I:.2f}")
 elif userInput == 'months':
-  T / 12
+  T = T / 12
   I = P * R * T 
   print(f"The amount of simple interest is {I:.2f}")
 elif userInput == 'days':
-  T / 365
+  T = T / 365
   I = P * R * T
   print(f"The amount of simple interest is {I:.2f}")
 

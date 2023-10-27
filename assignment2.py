@@ -23,3 +23,22 @@ final balance: 1320.68
 
 """
 
+def compound_interest_with_deposit(annual_investment, interest_rate, years):
+
+    balance = 0
+    for year in range(years):
+        balance += annual_investment
+        interest = balance * (1 + interest_rate / 100) ** 1
+        balance = interest
+
+        print(f"Balance at the end of year {year + 1}: ${balance:.2f}")
+    return balance
+
+annual_investment = float(input("Enter the annual investment: "))
+interest_rate = float(input("Enter the annual interest rate (as a percentage): "))
+years = int(input("Enter the number of years: "))
+
+final_balance = compound_interest_with_deposit(annual_investment, interest_rate, years)
+
+print(f"Final balance after {years} years: ${final_balance:.2f}")
+

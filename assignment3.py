@@ -22,3 +22,17 @@ rate: 5%
 10 years
 final balance: 1320.68
 """
+annual_investment = float (input ("Enter the annual investment: "))
+interest_rate = float (input ("Enter the annual interest rate (as a percentage): "))
+years = int (input ("Enter the number of years: "))
+
+balance = 0
+year = 0
+while year < years:
+  balance += annual_investment
+  interest = balance * interest_rate / 100
+  balance += interest
+  year += 1
+  print ("After", year, "year(s), you have:", round (balance, 2))
+
+print ("The final balance is:", round (balance, 2))

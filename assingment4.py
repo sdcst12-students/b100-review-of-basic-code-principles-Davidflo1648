@@ -21,31 +21,36 @@ How many months will it take him to pay off the car.  How much interest has he p
 84 months
 He will have paid 21711.60 in interest
 """
-def debt_repayment(debt, interest_rate, annual_payment):
-    monthly_interest_rate = interest_rate / 100 / 12
+def monthly_payment (principal, annual_rate, annual_payment):
+  monthly_rate = annual_rate / 12
+  monthly_payment = annual_payment / 12
+  balance = principal
+  months = 0
+  while balance > 0:
+    balance = balance * (1 + monthly_rate)
+    balance = balance - monthly_payment
+    months = months + 1
+  return months, balance
 
-    monthly_payment = annual_payment / 1
+def total_interest (principal, annual_rate, months):
+  monthly_rate = annual_rate / 12
+  interest = 0
+  balance = principal
+  for i in range (months):
+    interest = interest + balance * monthly_rate
+    balance = balance - monthly_payment (principal, annual_rate, annual_payment) [0]
+    if balance < 0:
+      balance = 0
+  return interest
 
-    months = 0
+principal = float (input ("Enter the initial debt: "))
+annual_rate = float (input ("Enter the annual interest rate: "))
+annual_payment = float (input ("Enter the annual payment: "))
 
-    total_interest = 0
+months, balance = monthly_payment (principal, annual_rate, annual_payment)
+print ("It will take", months, "months to repay the debt.")
+print ("The remaining balance after", months, "months is", round (balance, 2))
 
-    while debt > 0 and monthly_payment < debt * monthly_interest_rate:
-        interest = debt * monthly_interest_rate
-
-        total_interest += interest
-
-        debt = debt - monthly_payment + interest
-
-        months += 1
-    return months, total_interest
-
-debt = float(input("Enter the initial debt: "))
-interest_rate = float(input("Enter the annual interest rate (as a percentage): "))
-annual_payment = float(input("Enter the annual payment: "))
-
-months, total_interest = debt_repayment(debt, interest_rate, annual_payment)
-
-print(f"It will take {months} months to pay off the debt.")
-print(f"The total amount of interest paid is ${total_interest:.2f}.")
+interest = total_interest (principal, annual_rate, months)
+print ("The total amount of interest paid is", round (interest, 2))
 
